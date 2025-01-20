@@ -15,11 +15,9 @@ import java.util.Optional;
 @RequestMapping("/products")
 public class ProductController {
     private ProductRepository productRepository;
-    private String category;
 
     public ProductController() {
         productRepository = new ProductRepository();
-        this.category = null;
     }
 
     @GetMapping
@@ -33,7 +31,7 @@ public class ProductController {
                         productsCategory.add(productRepository.getAll().get(i));
                     }
                 }
-                if(productsCategory.size() == 0) {
+                if(productsCategory.isEmpty()) {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No products of the provided category were found");
                 }
                 return productsCategory;
