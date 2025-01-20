@@ -15,7 +15,7 @@ public class ProductRepository {
     }
 
     public List<Product> getAll() {
-        if (products.size() == 0) {
+        if (products.isEmpty()) {
             return null;
         }
         return this.products;
@@ -26,17 +26,17 @@ public class ProductRepository {
     }
 
     public Product getOne(int id) {
-        for (int i = 0; i < products.size(); i++) {
-            if(products.get(i).getId() == id) {
-                return products.get(i);
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
             }
         }
         return null;
     }
 
     public Product create(Product product) {
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getName().equals(product.getName())) {
+        for (Product value : products) {
+            if (value.getName().equals(product.getName())) {
                 return null;
             }
         }
@@ -63,6 +63,6 @@ public class ProductRepository {
             products.remove(deletedProduct);
             return deletedProduct;
         }
-        return deletedProduct;
+        return null;
     }
 }
